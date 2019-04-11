@@ -12,6 +12,8 @@ public class JointManager : MonoBehaviour
     public GameObject LHand;
 
 
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,14 +30,15 @@ public class JointManager : MonoBehaviour
         bool isRightHolding = GameManager.isRightHandHoldingObject;
         string name = collision.gameObject.name;
 
-        if (collision.gameObject == rigidCube)
+        if (collision.gameObject == rigidCube && GameManager.canCatch == true)
         {
 
+            rigidCube.GetComponent<FixedJoint>().connectedBody = this.gameObject.GetComponent<Rigidbody>();
             Debug.Log("Contact");
 
-            joint.connectedBody = rigidCube.GetComponent<Rigidbody>();
+            //joint.connectedBody = rigidCube.GetComponent<Rigidbody>();
 
-            
+    
         }
 
 
@@ -82,12 +85,18 @@ public class JointManager : MonoBehaviour
         }
     }
     */
+    
 
     // Update is called once per frame
     void Update()
     {
 
-
+        if (Input.GetButtonDown("RightMiddleFingerPress")) 
+        {
+            //Debug.Log("pressed");
+            rigidCube.GetComponent<FixedJoint>().connectedBody = null;
+        }
+        
 
     }
 }

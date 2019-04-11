@@ -10,11 +10,15 @@ public class GameManager : MonoBehaviour
 
     public TextMeshPro levelText;
 
+    public static bool isRightHandHoldingObject;
+
     public void instantiateLevel(string name, Material color, float gravity)
     {
 
         levelText.text = name;
         floor.GetComponent<Material>();
+
+
 
 
 

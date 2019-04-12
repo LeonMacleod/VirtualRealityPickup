@@ -45,18 +45,15 @@ public class GameManager : MonoBehaviour
             if (canCatch == false)
             {
                 canCatch = true;
-                FixedJoint rfx = rigidCube.AddComponent
-
-
-                    // NEW SOLUTION MUST add new joint objects and destroy them dynamically.
+                FixedJoint rfx = rigidCube.AddComponent<FixedJoint>()
 
             }
             else if (canCatch == true)
             {
                 canCatch = false;
                 FixedJoint rfx = rigidCube.GetComponent<FixedJoint>();
-                rfx.breakForce = 0.001f;
-                rfx.breakTorque = 0.001f;
+                
+
                 
 
             }

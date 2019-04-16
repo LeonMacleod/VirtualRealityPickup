@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
 
     public static bool isRightHandHoldingObject;
 
+    public GameObject RHand;
+
+
 
     public GameObject rigidCube;
 
@@ -45,17 +48,14 @@ public class GameManager : MonoBehaviour
             if (canCatch == false)
             {
                 canCatch = true;
-                FixedJoint rfx = rigidCube.AddComponent<FixedJoint>()
+                FixedJoint rfx = rigidCube.AddComponent<FixedJoint>();
+                rfx.connectedBody = RHand.GetComponent<Rigidbody>();
 
             }
             else if (canCatch == true)
             {
                 canCatch = false;
-                FixedJoint rfx = rigidCube.GetComponent<FixedJoint>();
-                
-
-                
-
+                Destroy(rigidCube.GetComponent<FixedJoint>());
             }
 
 

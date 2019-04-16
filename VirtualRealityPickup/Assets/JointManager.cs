@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class JointManager : MonoBehaviour
 {
@@ -8,15 +9,19 @@ public class JointManager : MonoBehaviour
     public FixedJoint joint;
     public GameObject rigidCube;
 
-    public GameObject RHand;
-    public GameObject LHand;
+    public TextMeshPro canCatchText;
 
-
+    public bool isRightHandHoldingObject;
+    public bool canCatch;
+    public bool onCollisionWay;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        canCatch = true;
+        isRightHandHoldingObject = false;
+
 
 
         
@@ -26,21 +31,30 @@ public class JointManager : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
 
-
-        bool isRightHolding = GameManager.isRightHandHoldingObject;
-        string name = collision.gameObject.name;
-
-        if (collision.gameObject == rigidCube && GameManager.canCatch == true)
+        if (collision.gameObject == rigidCube && canCatch == true && onCollisionWay == true)
         {
+            //getting all joints on the rigidcube
+            FixedJoint[] joints = rigidCube.GetComponents<FixedJoint>();
 
-            rigidCube.GetComponent<FixedJoint>().connectedBody = this.gameObject.GetComponent<Rigidbody>();
-            Debug.Log("Contact");
+            //ensuring the rigidcube is only being held by one hand at a time (frame problems can cause this to happen with multiple collisions occuring at the exact same time etc)
+            if (joints.Length > 1)
+            {
+                foreach (FixedJoint fx in joints)
+                {
+                    Destroy(fx);
+                }
+            }
+            else
+            {
+                Destroy(rigidCube.GetComponent<FixedJoint>());
+            }
 
-            //joint.connectedBody = rigidCube.GetComponent<Rigidbody>();
 
-    
+            FixedJoint fixedJointToCreate = rigidCube.AddComponent<FixedJoint>();
+            fixedJointToCreate.connectedBody = this.gameObject.GetComponent<Rigidbody>();
+
         }
-
+        
 
         // CURRENT PROBLEM
 
@@ -90,13 +104,36 @@ public class JointManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (Input.GetButtonDown("RightMiddleFingerPress")) 
+        if (Input.GetButtonDown("RightTriggerPress"))
         {
-            //Debug.Log("pressed");
-            rigidCube.GetComponent<FixedJoint>().connectedBody = null;
-        }
-        
+            if (canCatch == false)
+            {
+                canCatch = true;
+  
 
+            }
+            else if (canCatch == true)
+            {
+                FixedJoint[] joints = rigidCube.GetComponents<FixedJoint>();
+                foreach (FixedJoint joint in joints)
+                {
+                    Destroy(joint);
+
+                }
+
+
+                canCatch = false;
+
+
+
+            }
+
+
+
+            //Debug.Log("pressed");
+            //rigidCube.GetComponent<FixedJoint>().connectedBody = null;
+        }
+
+        canCatchText.text = "Catch mode :" + canCatch.ToString();
     }
 }

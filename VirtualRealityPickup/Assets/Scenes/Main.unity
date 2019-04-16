@@ -401,7 +401,6 @@ GameObject:
   - component: {fileID: 871790917}
   - component: {fileID: 871790916}
   - component: {fileID: 871790915}
-  - component: {fileID: 871790920}
   m_Layer: 0
   m_Name: RigidCube
   m_TagString: Untagged
@@ -491,26 +490,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 871790914}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.022, y: 2.92, z: -0.184}
+  m_LocalPosition: {x: 0.022, y: 2.468, z: -0.184}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!138 &871790920
-FixedJoint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 871790914}
-  m_ConnectedBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_EnableCollision: 0
-  m_EnablePreprocessing: 1
-  m_MassScale: 1
-  m_ConnectedMassScale: 1
 --- !u!1 &888028267
 GameObject:
   m_ObjectHideFlags: 0
@@ -630,7 +615,7 @@ GameObject:
   - component: {fileID: 1016456427}
   - component: {fileID: 1016456426}
   - component: {fileID: 1016456429}
-  - component: {fileID: 1016456431}
+  - component: {fileID: 1016456430}
   m_Layer: 0
   m_Name: RHand
   m_TagString: Untagged
@@ -726,7 +711,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1016456431
+--- !u!114 &1016456430
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -740,8 +725,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joint: {fileID: 0}
   rigidCube: {fileID: 871790914}
-  RHand: {fileID: 0}
-  LHand: {fileID: 0}
+  canCatchText: {fileID: 578636357}
+  isRightHandHoldingObject: 0
+  canCatch: 0
+  onCollisionWay: 1
 --- !u!1 &1078689149
 GameObject:
   m_ObjectHideFlags: 0
@@ -930,7 +917,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1453665542}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.68, z: 0}
+  m_LocalPosition: {x: 0, y: 1.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1078689152}
@@ -968,6 +955,114 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1582666474
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1582666479}
+  - component: {fileID: 1582666478}
+  - component: {fileID: 1582666477}
+  - component: {fileID: 1582666476}
+  - component: {fileID: 1582666475}
+  m_Layer: 0
+  m_Name: AnotherRigidCube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!54 &1582666475
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1582666474}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &1582666476
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1582666474}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1582666477
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1582666474}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 10bb7f7434486aa44807a00352e18794, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &1582666478
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1582666474}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1582666479
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1582666474}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.41, z: -0.784}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1618376047
 GameObject:
@@ -1076,7 +1171,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1882210190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1092,6 +1187,7 @@ MonoBehaviour:
   floor: {fileID: 0}
   levelText: {fileID: 0}
   canCatchText: {fileID: 578636357}
+  RHand: {fileID: 1016456424}
   rigidCube: {fileID: 871790914}
 --- !u!4 &1882210191
 Transform:
@@ -1120,7 +1216,7 @@ GameObject:
   - component: {fileID: 2128794012}
   - component: {fileID: 2128794011}
   - component: {fileID: 2128794010}
-  - component: {fileID: 2128794009}
+  - component: {fileID: 2128794008}
   m_Layer: 0
   m_Name: LHand
   m_TagString: Untagged
@@ -1142,7 +1238,7 @@ Transform:
   m_Father: {fileID: 945288190}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2128794009
+--- !u!114 &2128794008
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1156,8 +1252,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joint: {fileID: 0}
   rigidCube: {fileID: 871790914}
-  RHand: {fileID: 0}
-  LHand: {fileID: 0}
+  canCatchText: {fileID: 578636357}
+  isRightHandHoldingObject: 0
+  canCatch: 0
+  onCollisionWay: 1
 --- !u!54 &2128794010
 Rigidbody:
   m_ObjectHideFlags: 0

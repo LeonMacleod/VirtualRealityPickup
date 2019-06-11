@@ -49,11 +49,9 @@ public class JointManager : MonoBehaviour
             // create abd add tge fuxed hiubt
             FixedJoint fixedJointToCreate = rigidCube.AddComponent<FixedJoint>();
             // connecting the foxiedjoint to the hand on collision ('this' refers to the hand')
-            fixedJointToCreate.connectedBody = this.gameObject.GetComponent<Rigidbody>();
 
         }
-        
-
+       
     }
 
 
